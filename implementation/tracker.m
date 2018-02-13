@@ -18,13 +18,13 @@ pos = seq.init_pos(:)';
 target_sz = seq.init_sz(:)';
 params.init_sz = target_sz;
 
-% Feature settings
+% Feature settings 设置特征参数
 features = params.t_features;
 
-% Set default parameters
+% Set default parameters 默认参数配置
 params = init_default_params(params);
 
-% Global feature parameters
+% Global feature parameters 全局特征参数
 if isfield(params, 't_global')
     global_fparams = params.t_global;
 else
@@ -33,7 +33,7 @@ end
 global_fparams.use_gpu = params.use_gpu;
 global_fparams.gpu_id = params.gpu_id;
 
-% Correct max number of samples
+% Correct max number of samples 正确最大样本数
 params.nSamples = min(params.nSamples, seq.num_frames);
 
 % Define data types

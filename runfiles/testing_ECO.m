@@ -59,13 +59,13 @@ params.train_gap = 5;                   % The number of intermediate frames with
 params.skip_after_frame = 1;            % After which frame number the sparse update scheme should start (1 is directly)
 params.use_detection_sample = true;     % Use the sample that was extracted at the detection stage also for learning
 
-% Factorized convolution parameters
+% Factorized convolution parameters 分解卷积参数
 params.use_projection_matrix = true;    % Use projection matrix, i.e. use the factorized convolution formulation
 params.update_projection_matrix = true; % Whether the projection matrix should be optimized or not
 params.proj_init_method = 'pca';        % Method for initializing the projection matrix
 params.projection_reg = 5e-8;	 	 	% Regularization paremeter of the projection matrix
 
-% Generative sample space model parameters
+% Generative sample space model parameters 生成样本空间模型参数
 params.use_sample_merge = true;                 % Use the generative sample space model to merge samples
 params.sample_merge_type = 'Merge';             % Strategy for updating the samples
 params.distance_matrix_update_type = 'exact';   % Strategy for updating the distance matrix

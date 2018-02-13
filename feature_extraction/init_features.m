@@ -1,11 +1,11 @@
 function [features, gparams, feature_info] = init_features(features, gparams, is_color_image, img_sample_sz, size_mode)
-
+% 初始化特征提取
 if nargin < 3
     size_mode = 'same';
 end
 
 
-% Set missing global parameters to default values
+% Set missing global parameters to default values 如果没有全局变量就使用默认变量
 if ~isfield(gparams, 'normalize_power')
     gparams.normalize_power = [];
 end
