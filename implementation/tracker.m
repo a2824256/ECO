@@ -18,7 +18,7 @@ pos = seq.init_pos(:)';
 target_sz = seq.init_sz(:)';
 params.init_sz = target_sz;
 
-% Feature settings 设置特征参数
+% Feature settings 设置特征参数 #imp
 features = params.t_features;
 
 % Set default parameters 默认参数配置

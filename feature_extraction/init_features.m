@@ -6,6 +6,7 @@ end
 
 
 % Set missing global parameters to default values 如果没有全局变量就使用默认变量
+% 判断作用域是否存在，～反
 if ~isfield(gparams, 'normalize_power')
     gparams.normalize_power = [];
 end
@@ -23,9 +24,10 @@ if ~isfield(gparams, 'use_gpu')
 end
 
 % find which features to keep
+% 创建一个features长度，值全部为0的数组
 feat_ind = false(length(features),1);
 for n = 1:length(features)
-    
+    % 对各个结构体参数进行判断
     if ~isfield(features{n}.fparams,'useForColor')
         features{n}.fparams.useForColor = true;
     end
@@ -35,16 +37,16 @@ for n = 1:length(features)
     end
     
     if (features{n}.fparams.useForColor && is_color_image) || (features{n}.fparams.useForGray && ~is_color_image)
-        % keep feature
+        % keep feature 保留该特征
         feat_ind(n) = true;
     end
 end
 
-% remove features that are not used
+% remove features that are not used 去除不使用的特征
 features = features(feat_ind);
-
+% 特征长度
 num_features = length(features);
-
+% 生成一个num_features长度的全0矩阵
 feature_info.min_cell_size = zeros(num_features,1);
 
 
