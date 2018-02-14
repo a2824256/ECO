@@ -47,7 +47,7 @@ global_fparams.data_type = params.data_type;
 
 init_target_sz = target_sz;
 
-% Check if color image
+% Check if color image 判断是否彩色图像
 if size(im,3) == 3
     if all(all(im(:,:,1) == im(:,:,2)))
         is_color_image = false;
@@ -62,7 +62,7 @@ if size(im,3) > 1 && is_color_image == false
     im = im(:,:,1);
 end
 
-% Check if mexResize is available and show warning otherwise.
+% Check if mexResize is available and show warning otherwise. 是否使用opencv的mexResize
 params.use_mexResize = true;
 global_fparams.use_mexResize = true;
 try
@@ -86,11 +86,11 @@ end
 % target size at the initial scale
 base_target_sz = target_sz / currentScaleFactor;
 
-% window size, taking padding into account
+% window size, taking padding into account 搜索范围图形
 switch params.search_area_shape
     case 'proportional'
         img_sample_sz = floor( base_target_sz * params.search_area_scale);     % proportional area, same aspect ratio as the target
-    case 'square'
+    case 'square' %正方形
         img_sample_sz = repmat(sqrt(prod(base_target_sz * params.search_area_scale)), 1, 2); % square area, ignores the target aspect ratio
     case 'fix_padding'
         img_sample_sz = base_target_sz + sqrt(prod(base_target_sz * params.search_area_scale) + (base_target_sz(1) - base_target_sz(2))/4) - sum(base_target_sz)/2; % const padding
@@ -101,6 +101,7 @@ end
 [features, global_fparams, feature_info] = init_features(features, global_fparams, is_color_image, img_sample_sz, 'odd_cells');
 
 % Set feature info
+disp(features);
 img_support_sz = feature_info.img_support_sz;
 feature_sz = feature_info.data_sz;
 feature_dim = feature_info.dim;
@@ -611,7 +612,7 @@ while true
         end
     end
     
-    % visualization
+    % visualization 可视化
     if params.visualization
         rect_position_vis = [pos([2,1]) - (target_sz([2,1]) - 1)/2, target_sz([2,1])];
         im_to_show = double(im)/255;
@@ -655,7 +656,7 @@ while true
             
 %                 axis off;axis image;set(gca, 'Units', 'normalized', 'Position', [0 0 1 1])
         end
-        
+        % 刷新屏幕
         drawnow
 %         if frame > 1
 %             if frame < inf

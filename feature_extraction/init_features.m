@@ -92,7 +92,7 @@ for k = 1:length(features)
         
         % load the network
         net = load_cnn(features{k}.fparams, img_sample_sz);
-        
+        disp(net);
         % find the dimensionality of each layer
         features{k}.fparams.nDim = net.info.dataSize(3, features{k}.fparams.output_layer+1)';
         

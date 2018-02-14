@@ -2,7 +2,9 @@ function net = load_cnn(fparams, im_size)
 
 net = load(['networks/' fparams.nn_name]);
 
+% 修复当前神经网络
 net = vl_simplenn_tidy(net);
+% 遍历1到output_layer最大值
 net.layers = net.layers(1:max(fparams.output_layer));
 
 if strcmpi(fparams.input_size_mode, 'cnn_default')
@@ -23,6 +25,6 @@ end
 if size(net.meta.normalization.averageImage,1) > 1 || size(net.meta.normalization.averageImage,2) > 1
     net.meta.normalization.averageImage = imresize(single(net.meta.normalization.averageImage), net.meta.normalization.imageSize(1:2));
 end
-
+%显示网络结构
 net.info = vl_simplenn_display(net);
 end

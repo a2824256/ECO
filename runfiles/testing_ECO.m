@@ -25,7 +25,9 @@ cnn_params.input_size_mode = 'adaptive';        % How to choose the sample size
 cnn_params.input_size_scale = 1;                % Extra scale factor of the input samples to the network (1 is no scaling)
 
 % Which features to include
+% 在feature_extraction/init_features使用该参数
 params.t_features = {
+    % @调用函数
     struct('getFeature',@get_cnn_layers, 'fparams',cnn_params),...
     struct('getFeature',@get_fhog,'fparams',hog_params),...
     ...struct('getFeature',@get_colorspace, 'fparams',grayscale_params),...
