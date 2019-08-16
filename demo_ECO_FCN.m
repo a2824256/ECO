@@ -11,4 +11,4 @@ video_path = 'sequences/Crossing';
 
 % Run ECO
 % results = testing_ECO_HC(seq);
-results = testing_ECO(seq);
+results = testing_ECO_FCN(seq);
